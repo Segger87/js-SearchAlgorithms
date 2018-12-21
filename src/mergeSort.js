@@ -1,45 +1,33 @@
 export class MergeSort {
   constructor(numbers) {
-    this.mergeSorter(numbers, 0, numbers.length - 1);
+    console.log("Using Merge Sort: " + this.mergeSorter(numbers));
   }
 
-  mergeSorter = (numbers, left, right) => {
-    if (left < right) {
-      let middle = left + Math.floor((right - left) / 2);
-
-      setImmediate(() => this.mergeSorter(numbers, left, middle));
-      setImmediate(() => this.mergeSorter(numbers, middle + 1, right));
-      setImmediate(() => this.merge(numbers, left, middle, right));
+  mergeSorter = (numbers) => {
+    if (numbers.length <= 1) {
+      return numbers;
     }
+
+    let middle = Math.floor((numbers.length) / 2);
+
+    let sortedLeft = this.mergeSorter(numbers.slice(0, middle));
+    let sortedRight = this.mergeSorter(numbers.slice(middle));
+    return this.merge(sortedLeft, sortedRight);
   };
 
-  merge = (numbers, left, middle, right) => {
-    let helperArray = [];
-    for (let i = left; i <= right; i++) {
-      helperArray[i] = numbers[i];
-    }
-
-    let i = left;
-    let j = middle + 1;
-    let k = left;
-
-    while (i <= middle && j <= right) {
-      if (helperArray[i] <= helperArray[j]) {
-        numbers[k] = helperArray[i];
-        i++;
+  merge = (leftNumbers, rightNumbers) => {
+    let mergedOutput = [];
+    while(leftNumbers.length && rightNumbers.length) {
+      if (leftNumbers[0] < rightNumbers[0]) {
+        mergedOutput.push(leftNumbers[0]);
+        leftNumbers = leftNumbers.slice(1);
       } else {
-        numbers[k] = helperArray[j];
-        j++;
+        mergedOutput.push(rightNumbers[0]);
+        rightNumbers = rightNumbers.slice(1);
       }
-      k++;
     }
-
-    while (i <= middle) {
-      numbers[k] = helperArray[i];
-      k++;
-      i++;
-    }
-    console.log("Using Merge sort " + numbers);
-    return numbers;
+    mergedOutput = mergedOutput.concat(leftNumbers);
+    mergedOutput = mergedOutput.concat(rightNumbers);
+    return mergedOutput;
   };
 }
