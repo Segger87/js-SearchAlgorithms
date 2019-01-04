@@ -1,6 +1,6 @@
 export class InsertionSort {
   constructor(numbers) {
-    this.insertionSorter(numbers);
+    console.log(`Using Insertion Sort: ${this.insertionSorter(numbers)}`);
   }
 
   insertionSorter = numbers => {
@@ -18,7 +18,6 @@ export class InsertionSort {
       numbers[j + 1] = temp;
     }
 
-    console.log("Using Insertion Sort: " + numbers);
     return numbers;
   };
 }

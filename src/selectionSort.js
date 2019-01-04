@@ -1,6 +1,6 @@
 export class SelectionSort {
   constructor(numbers) {
-    this.selectionSorter(numbers);
+    console.log(`Using Selection Sort: ${this.selectionSorter(numbers)}`);
   }
 
   selectionSorter = numbers => {
@@ -23,7 +23,6 @@ export class SelectionSort {
       }
     }
 
-    console.log("Using Selection Sort:" + numbers);
     return numbers;
   };
 }
