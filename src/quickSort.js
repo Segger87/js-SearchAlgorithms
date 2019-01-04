@@ -10,7 +10,6 @@ export class QuickSorter {
     let left = [];
     let right = [];
     let pivot = numbers.pop();
-    let result = [];
 
     for (let i = 0; i < numbers.length; i++) {
       if (numbers[i] <= pivot) {
@@ -19,6 +18,6 @@ export class QuickSorter {
         right.push(numbers[i]);
       }
     }
-    return result.concat(this.quickSort(left), pivot, this.quickSort(right));
+    return [...this.quickSort(left), pivot, ...this.quickSort(right)];
   };
 }
